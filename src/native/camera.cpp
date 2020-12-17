@@ -218,7 +218,9 @@ void Open(const FunctionCallbackInfo<Value>& args) {
         message->capture->open(inputString);
     }
     cv::waitKey(10);
-    
+    //set capture resolution
+    message->capture->set(cv::CAP_PROP_FRAME_WIDTH, message->width);
+    message->capture->set(cv::CAP_PROP_FRAME_HEIGHT, message->height);
     uv_work_t* req = new uv_work_t();
     req->data = message;
     
